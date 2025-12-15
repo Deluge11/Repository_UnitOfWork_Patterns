@@ -1,0 +1,6 @@
+@Repository_UOW_HostAddress = http://localhost:5034
+
+GET {{Repository_UOW_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
