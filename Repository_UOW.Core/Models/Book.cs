@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Repository_UOW.Core.Models
 {
- public   class Book
+    public class Book
     {
         public int Id { get; set; }
 
-        [Required,MaxLength(200)]
+        [Required, MaxLength(200)]
         public string Title { get; set; }
 
         public Author Author { get; set; }

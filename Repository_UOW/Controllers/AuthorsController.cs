@@ -8,24 +8,24 @@ namespace Repository_UOW.Controllers
     [ApiController]
     public class AuthorsController : ControllerBase
     {
-        public IBaseRepository<Author> AuthorRepository { get; }
+        private IUnitOfWork UnitOfWork { get; }
 
 
-        public AuthorsController(IBaseRepository<Author> authorRepository)
+        public AuthorsController(IUnitOfWork unitOfWork)
         {
-            AuthorRepository = authorRepository;
+            UnitOfWork = unitOfWork;
         }
 
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            return Ok(AuthorRepository.GetById(id));
+            return Ok(UnitOfWork.Authors.GetById(id));
         }
 
         [HttpGet("GetAsync/{id}")]
         public async Task<IActionResult> GetByIdAsync(int id)
         {
-            return Ok(await AuthorRepository.GetByIdAsync(id));
+            return Ok(await UnitOfWork.Authors.GetByIdAsync(id));
         }
     }
 }

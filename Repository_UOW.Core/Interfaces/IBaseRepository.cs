@@ -14,6 +14,7 @@ namespace Repository_UOW.Core.Interfaces
         Task<T> GetByIdAsync(int id);
         Task<IEnumerable<T>> GetAll();
         Task<T> Find(Expression<Func<T, bool>> match);
-
+        IEnumerable<T> Find(Expression<Func<T, bool>> match, string[] includes);
+        IEnumerable<T> Find(Expression<Func<T, bool>> match, string[] includes, int skip, int take);
     }
 }

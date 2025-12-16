@@ -38,5 +38,27 @@ namespace Repository_UOW.EF.Repositories
         {
             return await _context.Set<T>().SingleOrDefaultAsync(match);
         }
+
+        public IEnumerable<T> Find(Expression<Func<T, bool>> match, string[] includes)
+        {
+            IQueryable<T> query = _context.Set<T>();
+
+            foreach (var include in includes)
+                query = query.Include(include);
+
+            return query.Where(match).ToList();
+        }
+
+        public IEnumerable<T> Find(Expression<Func<T, bool>> match, string[] includes, int skip, int take)
+        {
+            IQueryable<T> query = _context.Set<T>();
+
+            foreach (var include in includes)
+                query = query.Include(include);
+
+            return query.Where(match).Skip(skip).Take(take).ToList();
+        }
+
+   
     }
 }
